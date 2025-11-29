@@ -1,5 +1,5 @@
 import { GoogleGenAI, Type } from "@google/genai";
-import { AnalysisResult } from "../types";
+import { AnalysisResult } from "../types.ts";
 
 // Safely retrieve API key to prevent "process is not defined" errors in browser
 const getApiKey = (): string => {

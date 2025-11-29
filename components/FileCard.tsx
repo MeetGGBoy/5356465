@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileNode, ViewMode } from '../types';
+import { FileNode, ViewMode } from '../types.ts';
 import { 
   FileText, 
   Image as ImageIcon, 

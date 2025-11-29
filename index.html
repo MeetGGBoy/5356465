@@ -4,16 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LAN Share AI</title>
+    <!-- Babel for on-the-fly transpilation of TSX in browser -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+      /* Global Resets for Cross-Browser Compatibility Warnings */
+      html {
+        -webkit-text-size-adjust: 100%; /* Chrome, Safari, iOS */
+        text-size-adjust: 100%; /* Standard */
+      }
+      
       body {
         font-family: "Microsoft YaHei", "Heiti SC", "Inter", sans-serif;
         background-color: #f8fafc;
+        
+        /* Font Smoothing */
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        
+        /* Touch Action for mobile optimization */
+        touch-action: manipulation;
+        -ms-touch-action: manipulation; /* IE10 */
       }
-      /* Custom scrollbar for webkit */
+
+      /* Scrollbar Styling */
       ::-webkit-scrollbar {
         width: 8px;
         height: 8px;
@@ -24,9 +39,26 @@
       ::-webkit-scrollbar-thumb {
         background: #cbd5e1; 
         border-radius: 4px;
+        
+        /* Background clip ordering fix */
+        -webkit-background-clip: content-box;
+        background-clip: content-box;
       }
       ::-webkit-scrollbar-thumb:hover {
         background: #94a3b8; 
+      }
+
+      /* Selection Styling */
+      * {
+        -webkit-user-select: text; /* Safari */
+        user-select: text;
+      }
+      
+      /* Ensure buttons/inputs don't select text by default if needed, 
+         but global text selection is usually desired. 
+         Reseting common drag issues: */
+      img, a {
+        -webkit-user-drag: none; /* Webkit specific, standard is draggable="false" */
       }
     </style>
   <script type="importmap">
@@ -43,6 +75,10 @@
 </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
+    <!-- 
+      Using Babel to transpile TSX in the browser.
+      Note: imports must include file extensions for browser-native resolution.
+    -->
+    <script type="text/babel" data-type="module" data-presets="react,typescript" src="/index.tsx"></script>
   </body>
 </html>

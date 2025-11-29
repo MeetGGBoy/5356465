@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { FileNode, ViewMode } from './types';
-import FileCard from './components/FileCard';
-import { analyzeFileMetadata } from './services/geminiService';
+import { FileNode, ViewMode } from './types.ts';
+import FileCard from './components/FileCard.tsx';
+import { analyzeFileMetadata } from './services/geminiService.ts';
 import { 
   LayoutGrid, 
   List, 
