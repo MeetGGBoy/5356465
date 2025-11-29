@@ -1,11 +1,25 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { AnalysisResult } from "../types";
 
-const apiKey = process.env.API_KEY || '';
+// Safely retrieve API key to prevent "process is not defined" errors in browser
+const getApiKey = (): string => {
+  try {
+    // Check for standard process.env (Node.js/Webpack/Polyfilled)
+    if (typeof process !== 'undefined' && process.env && process.env.API_KEY) {
+      return process.env.API_KEY;
+    }
+  } catch (e) {
+    console.warn("Error accessing environment variables:", e);
+  }
+  return '';
+};
+
+const apiKey = getApiKey();
 const ai = new GoogleGenAI({ apiKey });
 
 export const analyzeFileMetadata = async (fileName: string, fileType: string, fileSize: string): Promise<AnalysisResult> => {
   if (!apiKey) {
+    console.warn("API Key is missing. Please ensure API_KEY is set in your environment variables.");
     return {
       description: "API Key missing. Cannot generate analysis.",
       tags: ["Error"]
