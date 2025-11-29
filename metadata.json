@@ -1,0 +1,5 @@
+{
+  "name": "LAN Share AI",
+  "description": "A modern, AI-enhanced Local Area Network file sharing interface. Supports uploading, managing, and intelligently analyzing files using Gemini.",
+  "requestFramePermissions": []
+}
